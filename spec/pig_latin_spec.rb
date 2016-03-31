@@ -31,4 +31,17 @@ describe PigLatin do
     end
   end
 
+  context "given a word that is capitalized" do
+    let(:english) { "Eat" }
+    it "preserves capitalization" do
+      expect(subject).to eq "Eatay"
+    end
+  end
+
+  context "given a sentence with multiple words and punctuation" do
+    let(:english) { "hello...  apples?!" }
+    it "translates all of the words and preserve the non-words characters" do
+      expect(subject).to eq "ellohay...  applesay?!"
+    end
+  end
 end
