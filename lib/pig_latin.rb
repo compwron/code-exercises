@@ -8,19 +8,22 @@ class PigLatin
   def translate
     @phrase.gsub(/[A-Za-z]+/) { |word|
       characters = word.chars
-      capitalized = !!(characters.first =~ /[A-Z]/)
 
-      if VOWELS.include?(characters.first.downcase)
-        characters << "ay"
-      else
+      if !VOWELS.include?(characters.first.downcase)
         first = characters.shift
         characters << first.downcase
-        characters << "ay"
-        if capitalized
+        if capitalized?(first)
           characters.first.upcase!
         end
       end
+      characters << "ay"
       characters.join("")
     }
+  end
+
+  private
+
+  def capitalized?(char)
+    !!(char =~ /[A-Z]/)
   end
 end
