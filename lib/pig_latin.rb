@@ -1,12 +1,12 @@
 class PigLatin
   VOWELS = ["a", "e", "i", "o", "u"]
 
-  def initialize(words)
-    @words = words.split(" ")
+  def initialize(phrase)
+    @phrase = phrase
   end
 
   def translate
-    @words.map { |word|
+    @phrase.gsub(/[A-Za-z]+/) { |word|
       characters = word.chars
       capitalized = !!(characters.first =~ /[A-Z]/)
 
@@ -21,7 +21,6 @@ class PigLatin
         end
       end
       characters.join("")
-
-    }.join(" ")
+    }
   end
 end
