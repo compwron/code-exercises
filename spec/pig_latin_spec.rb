@@ -10,6 +10,14 @@ describe PigLatin do
     end
   end
 
+  context "given a word that starts with multiple consonant" do
+    let(:english) { "school" }
+
+    it "move the leading consonants to the end and adds 'ay'" do
+      expect(subject).to eq "oolschay"
+    end
+  end
+
   context "given a word that starts with a vowel" do
     let(:english) { "apples" }
     it "add 'ay'" do
