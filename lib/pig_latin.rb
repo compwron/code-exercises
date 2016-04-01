@@ -14,20 +14,17 @@ class PigLatin
   private
 
   def translate_word(word)
-    characters = word.chars
-    if !VOWELS.include?(characters.first.downcase)
-      index_of_vowel = VOWELS.map {|v| word.index(v)}.compact.min
-      prefix = word[0...index_of_vowel]
-      postfix = word[index_of_vowel..-1]
-      result = postfix + prefix.downcase
-    else
-      result = word
-    end
-    result += "ay"
-    if capitalized?(word[0])
-      result.capitalize!
-    end
-    result
+    index_of_vowel = first_vowel_index(word)
+    prefix = word[0...index_of_vowel]
+    postfix = word[index_of_vowel..-1]
+    result = postfix + prefix.downcase + "ay"
+    capitalized?(word[0]) ? result.capitalize : result
+  end
+
+  def first_vowel_index(word)
+    VOWELS.map { |v|
+      word.downcase.index(v)
+    }.compact.min
   end
 
   def capitalized?(char)
